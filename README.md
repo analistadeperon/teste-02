@@ -1,5 +1,29 @@
 # teste-02
 <div id="app"></div>
+<!-- Lazy load automático de uma imagem fora da tela (offscreen) quando o scroll está perto -->
+<img src="unicorn.jpg" loading="lazy" alt=".."/>
+ 
+<!-- Carrega uma imagem imediatamente ao invés de lazy-loading -->
+<img src="unicorn.jpg" loading="eager" alt=".."/>
+ 
+<!-- O navegador decide se vai ou não usar lazy loading na imagem -->
+<img src="unicorn.jpg" loading="auto" alt=".."/>
+ 
+<!-- Lazy load de imagens em <picture> -->
+<picture>
+  <source media="(min-width: 40em)" srcset="big.jpg 1x, big-hd.jpg 2x">
+  <source srcset="small.jpg 1x, small-hd.jpg 2x">
+  <img src="fallback.jpg" loading="lazy">
+</picture>
+ 
+<!-- Lazy-load em imagem com srcset especificado -->
+<img src="small.jpg"
+     srcset="large.jpg 1024w, medium.jpg 640w, small.jpg 320w"
+     sizes="(min-width: 36em) 33.3vw, 100vw"
+     alt="A rad wolf" loading="lazy">
+ 
+<!-- Lazy load em um iframe offscreen quando o scroll está próximo a ele -->
+<iframe src="video-player.html" loading="lazy"></iframe>
 <form id="payment-form" target="_blank" action="https://<-- seu servico -->" method="POST">
     <div class="usable-creditcard-form">
       <div class="wrapper">
@@ -455,6 +479,8 @@
 
 </body>
 </html>
+src="https://s3-sa-east-1.amazonaws.com/projetos-artes/fullsize%2F2017%2F09%2F04%2F10%2FLogo-220982_111582_104905098_711181223.jpg"
+
 <p>Cadastro de Empresa</p>
     		<fieldset id="first">
     
@@ -481,90 +507,40 @@
     
     </body>
     </html>
+    
+</script> 
+</head> 
+<body onload="initialize()">
+<script src="http://maps.google.com/maps/api/js?key=SUA KEY AQUI"></script>
+  <!-- cordova.js required for cordova apps (remove if not needed) -->
+  <script src="cordova.js"></script>
+  <div class="cartao">
+  <div class="cartao-container">
+    <div class="cartao-front"></div>
+    <div class="cartao-back"></div>
+  </div>
+</div>
 
-
-    <html>
-<head>
-<title>Untitled Document</title>
-<script src="SpryValidationTextField.js" type="text/javascript"></script>
-<link href="SpryValidationTextField.css" rel="stylesheet" type="text/css" />
-</head>
-
-<body>
-<form name="cadastro" onSubmit="return validarCPF()">
- 
-  <span id="sprytextfield1">
-  <label>Informe seu CPF
-    <input type="text" name="cpf" id="cpf" />
-  </label>
-  <span class="textfieldRequiredMsg">A value is required.</span><span class="textfieldInvalidFormatMsg">Invalid format.</span></span>
-  <input type="submit" value="Enviar!">
+<form method="post" action="mailto:youremail@email.com">
+	<p>Que tipo de atendimento prefere?</p>
+	
+	<label>Color:</label> <br />
+	<input type="radio" name="color" value="dark" /> online <br />
+	<input type="radio" name="color" value="light" /> presencial <br />
+	
+	<label>Size:</label> <br />
+	<input type="radio" name="size" value="small" /> dia <br />
+	<input type="radio" name="size" value="average" /> tarde <br />
+	<input type="radio" name="size" value="big" /> fim de semana <br />
+	
+	<input type="submit" value="Email Myself" />
 </form>
-<script type="text/javascript">
-function validarCPF(){
-   var cpf = document.cadastro.cpf.value;
-   if(cpf.length != 11 || cpf == "00000000000" || cpf == "11111111111" ||
-      cpf == "22222222222" || cpf == "33333333333" || cpf == "44444444444" ||
-      cpf == "55555555555" || cpf == "66666666666" || cpf == "77777777777" ||
-      cpf == "88888888888" || cpf == "99999999999")    {
-      window.alert("CPF inválido2. Tente novamente.");
-      return false;
-   }
+<form method="post" action="mailto:youremail@email.com">
 
-   soma = 0;
-   for(i = 0; i < 9; i++)
-        soma += parseInt(cpf.charAt(i)) * (10 - i);
-   resto = 11 - (soma % 11);
-   if(resto == 10 || resto == 11)
-     resto = 0;
-   if(resto != parseInt(cpf.charAt(9))){
-     window.alert("CPF inválido3. Tente novamente.");
-     return false;
-   }
-   soma = 0;
-   for(i = 0; i < 10; i ++)
-     soma += parseInt(cpf.charAt(i)) * (11 - i);
-   resto = 11 - (soma % 11);
-   if(resto == 10 || resto == 11)
-     resto = 0;
-   if(resto != parseInt(cpf.charAt(10))){
-     window.alert("CPF inválido4. Tente novamente.");
-     return false;
-   }
-   return true;
- 
-}
+	<textarea rows="5" cols="20" wrap="physical" name="comments">Escreva um comentário</textarea><br />
+	<input type="submit" value="Email Yourself" />
+	
+</form>
+<input type="hidden" name="MAX_FILE_SIZE" value="4194304" />
 
-var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "custom", {pattern:"000.000.000-00", validateOn:["blur"]});
- if (cpf != "") {
-window.alert(sprytextfield1)
-}
- 
- function remove(str, sub) {
-   i = str.indexOf(sub);
-   r = "";
-   if (i == -1) return str;
-   r += str.substring(0,i) + remove(str.substring(i + sub.length), sub);
-   return r;
- }
-
-
-<body>
-<p id="demo">Clique no botão para receber sua localização em Latitude e Longitude:</p>
-<button onclick="getLocation()">Clique Aqui</button>
-<script>
-var x=document.getElementById("demo");
-function getLocation()
-  {
-  if (navigator.geolocation)
-    {
-    navigator.geolocation.getCurrentPosition(showPosition);
-    }
-  else{x.innerHTML="O seu navegador não suporta Geolocalização.";}
-  }
-function showPosition(position)
-  {
-  x.innerHTML="Latitude: " + position.coords.latitude +
-  "<br>Longitude: " + position.coords.longitude; 
-  }
-</script>
+<input type="file" />
